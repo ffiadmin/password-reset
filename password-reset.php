@@ -8,8 +8,6 @@ Author: Oliver Spryn
 Author URI: http://forwardfour.com/
 License: MIT
 */
-
-	namespace FFI\PR;
 	
 //Add the function which will be called to replace the default content of the password reset email
 	function emailContent($old_message, $key) {
@@ -26,9 +24,14 @@ License: MIT
 	}
  
 //Remove the default Wordpress hook to send a user an email
-	add_filter("retrieve_password_message", "FFI\PR\emailContent", 10, 2);
+	add_filter("retrieve_password_message", "emailContent", 10, 2);
  
 //Disable sending password change notification emails to the administrator
-	function wp_password_change_notification() { }
-	function wp_new_user_notification() { }
+	if (!function_exists("wp_password_change_notification")) {
+		function wp_password_change_notification($user) { }
+	}
+	
+	if (!function_exists("wp_new_user_notification")) {
+		function wp_new_user_notification($user_id, $plaintext_pass) { }
+	}
 ?>
