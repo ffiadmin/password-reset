@@ -9,9 +9,11 @@ Therefore, an email such as this:
  
 Will be rewritten to this:
 
- > It appears as though you have requested that your password be reset for the following account: http://`wordpress-site`/
+ > It appears as though you have requested your password to be reset for the following account: http://`wordpress-site`/
  > Your username is: `username`
  > If you did not request this email, you may safely disregard it.
  > To reset your password, visit the following address:
- > 
+ >
  > http://`wordpress-site`/wp-login.php?action=rp&key=`key`&login=`url-encoded-username`
+
+This plugin will also disable sending password change notification emails to the administrator.
